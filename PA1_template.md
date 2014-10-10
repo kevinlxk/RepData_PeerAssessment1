@@ -74,7 +74,7 @@ qplot(avgint$interval, avgint$avgsteps, data = avgint, main = "Daily Activity Pa
 maxsteps <- avgint[which(avgint$avgsteps==max(avgint$avgsteps)),]
 ```
 
-As we can see from the output, the 5-minute interval with the maximum number is steps is 835
+As we can see from the output, the 5-minute interval with the maximum number is steps is interval = 835
 
 ## Imputing missing values
 

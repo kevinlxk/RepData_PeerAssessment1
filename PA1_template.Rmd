@@ -8,12 +8,19 @@ output:
 
 ## Loading and preprocessing the data
 
+1. We start by loading some libraries we will require as well as read the data:
+
 ```{r loading data}
 # Loading libraries
 library(dplyr)
 library(ggplot2)
 # Reading data
 data <- read.csv("activity.csv")
+```
+
+2. We then start processing these data
+
+``` {r processing}
 # Setting the date format
 data$date <- as.Date(data$date, format = "%Y-%m-%d")
 # Working out total number of steps per day
@@ -30,15 +37,19 @@ names(avgint) <- c("interval", "avgsteps")
 
 ## What is mean total number of steps taken per day?
 
+1. We first want to generate a histogram of the total number of steps taken each day to look at the distribution of total steps
+
 ```{r meantotsteps}
 
 qplot(totsteps$totalsteps, data = totsteps, main = "Total Number of Steps Taken Each Day", geom = "histogram")
-totstepmean <- round(mean(totsteps$totalsteps, na.rm = TRUE), digits = 2)
-totstepmed <- median(totsteps$totalsteps, na.rm = TRUE)
-
 ```
 
+2. We then calculate the mean and median from the data using the following codes and save them in variables which we will use to show the results subsequently.
 
+``` {r meanmedian}
+totstepmean <- round(mean(totsteps$totalsteps, na.rm = TRUE), digits = 2)
+totstepmed <- median(totsteps$totalsteps, na.rm = TRUE)
+```
 
 The **Mean** total number of steps each day is **`r totstepmean `** and the **Median** total number of steps each day is **`r totstepmed`**.
 
@@ -54,6 +65,22 @@ maxsteps <- avgint[which(avgint$avgsteps==max(avgint$avgsteps)),]
 As we can see from the output, the 5-minute interval with the maximum number is steps is interval = `r maxsteps$interval`.
 
 ## Imputing missing values
+
+1. To report the number of missing days, we run the following:
+
+```{r missingsteps}
+sum(is.na(data$steps))
+```
+
+2. We need to impute figures for these NAs. Let us simply use the mean for that particular interval across the days.
+
+```{r imputation}
+navec <- !is.na(data$steps)
+impvec <- navec * avgint$avgsteps
+data2 <- data
+data2$steps[is.na(data2$steps)] <- 0
+data2$steps <- impvec + data2$steps
+```
 
 
 

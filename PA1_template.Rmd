@@ -51,10 +51,14 @@ maxsteps <- avgint[which(avgint$avgsteps==max(avgint$avgsteps)),]
 
 ```
 
-As we can see from the output, the 5-minute interval with the maximum number is steps is interval = `r maxsteps$interval`
+As we can see from the output, the 5-minute interval with the maximum number is steps is interval = `r maxsteps$interval`.
 
 ## Imputing missing values
 
 
 
 ## Are there differences in activity patterns between weekdays and weekends?
+
+
+
+

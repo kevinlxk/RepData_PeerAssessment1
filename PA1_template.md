@@ -84,9 +84,17 @@ qplot(avgint$interval, avgint$avgsteps, data = avgint, ylab = "Average Steps", x
 
 ```r
 maxsteps <- avgint[which(avgint$avgsteps==max(avgint$avgsteps)),]
+maxsteps
 ```
 
-As we can see from the output, the 5-minute interval with the maximum number is steps is interval = 835.
+```
+## Source: local data frame [1 x 2]
+## 
+##     interval avgsteps
+## 104      835    206.2
+```
+
+As we can see from the output, the 5-minute interval with the maximum number is steps is interval = 835 and the maximum number of steps is 206.1698.
 
 ## Imputing missing values
 

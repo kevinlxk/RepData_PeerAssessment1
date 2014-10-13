@@ -59,10 +59,10 @@ The **Mean** total number of steps each day is **`r totstepmean `** and the **Me
 ```{r dailyact}
 qplot(avgint$interval, avgint$avgsteps, data = avgint, ylab = "Average Steps", xlab = "Interval Number", main = "Daily Activity Pattern", geom = "line")
 maxsteps <- avgint[which(avgint$avgsteps==max(avgint$avgsteps)),]
-
+maxsteps
 ```
 
-As we can see from the output, the 5-minute interval with the maximum number is steps is interval = `r maxsteps$interval`.
+As we can see from the output, the 5-minute interval with the maximum number is steps is interval = `r maxsteps$interval` and the maximum number of steps is `r max(avgint$avgsteps)`.
 
 ## Imputing missing values
 
@@ -120,7 +120,6 @@ data2$dayweek <- gsub("Sunday", "Weekend", data2$dayweek)
 # Replacing all other days as Weekday
 data2$dayweek[which(data2$dayweek != "Weekend")] <- "Weekday"
 data2$dayweek <- as.factor(data2$dayweek)
-
 ```
 
 2. To plot the require graph, we have to take the average across the intervals to form the dataset that is used for creating the panel plots required.
